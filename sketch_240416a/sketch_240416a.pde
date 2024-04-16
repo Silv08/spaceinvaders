@@ -1,24 +1,9 @@
+// Nested for() loops can be used to
+// generate two-dimensional patterns
+size(400, 400);
 
-
-
-
-
-
-
-/**
- * Continuous Lines. 
- * 
- * Click and drag the mouse to draw a line. 
- */
-
-void setup() {
-  size(980, 540);
-  background(255,0,0);
-}
-
-void draw() {
-  stroke(0);
-  if (mousePressed == true) {
-    line(mouseX, mouseY, pmouseX, pmouseY);
+for (int i = 120; i < 320; i = i+20) {
+  for (int j = 0; j < 320; j = j+20) {
+    point(i, j);
   }
 }

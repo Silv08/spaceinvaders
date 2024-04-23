@@ -1,3 +1,10 @@
+int direction=1;
+boolean increaseY=false;
+ArrayList enemies=new ArrayList();
+
+
+
+
 PFont f;
 
 int pixelsize = 4;
@@ -12,6 +19,12 @@ void setup() {
     noStroke();
     size(800, 550);
     f = createFont("Arial", 36, true);
+      for (int i = 0; i<14; i= i+1){
+    for (int j = 0; j<3; j= j+1){
+      Enemy red=new Enemy( i*50+60,j*50+60);
+      enemies.add( red);
+    }
+  }
 }
 
 void drawspaceship(String sprite[], int x, int y ){
@@ -33,30 +46,22 @@ fill(155);
 background(0);
 blue.move();
    blue.drawspaceship();
-   String[] sprite = new String[5];
-   sprite[0] = "0010100";
-   sprite[1] = "0110110";
-   sprite[2] = "1111111";
-   sprite[3] = "1111111";
-   sprite[4] = "0111110";
-   //drawspaceship(sprite, 355,465);
+   for (int i = 0; i < enemies.size(); i = i + 1 ){
+     Enemy red = (Enemy)enemies.get(i); 
+    if (red.outside()){
+    direction = direction*(-1);
+    increaseY= true;
+    break;
+   
+    }
+   }
+ for(int i = 0 ; i
    
    
-  
-
 fill(255,0,0);
 
-  String[] enemySprite = new String[5];
-  enemySprite[0] = "0010100";
-  enemySprite[1] = "0110110";
-  enemySprite[2] = "1111111";
-  enemySprite[3] = "1111111";
-  enemySprite[4] = "0111110";
-  for (int i = 0; i<14; i= i+1){
-    for (int j = 0; j<3; j= j+1){
-      drawspaceship(enemySprite, i*50+60,j*50+60);
-    }
-  } 
+  
+ 
 }
 
 int a=1;
@@ -164,7 +169,7 @@ class Enemy{
      y=y+(gridsize/2);
    }
   }
-  
+/// rückgabetyp (boolean) funktions name (outside)
   boolean outside() {
         return x + (direction*gridsize) < 0 || x + (direction*gridsize) > width - gridsize;
     }

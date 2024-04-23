@@ -127,3 +127,45 @@ class Player {
 
   }
 }
+class Enemy{
+  int x;
+  int y;
+  String[] sprite;
+  Enemy(int xpos, int ypos){
+   x = xpos;
+   y = ypos;
+   
+   sprite  = new String[5];
+   sprite[0] = "1011101";
+   sprite[1] = "0101010";
+   sprite[2] = "1111111";
+   sprite[3] = "0101010";
+   sprite[4] = "1000001";
+ }
+ 
+ // zeichnet das Raumschiff
+ void drawspaceship(){
+   for (int i = 0; i < sprite.length; i = i+1) {
+     String row = (String) sprite[i];
+     for (int j = 0; j < row.length(); j = j+1) {
+      // buchstabe und zeichen an stelle j 
+       if (row.charAt(j) == '1') {
+         rect(x+(j * pixelsize), y+(i * pixelsize), pixelsize, pixelsize);
+       }   // funktion mit argumente 
+                    // blau ist eine funktion die durch die programiersprache bereitgestellt wird            
+      }
+    }
+  }
+ void move(){
+   if (frameCount%60==0){
+     x=x+(gridsize*direction);
+   }
+   if (increaseY){
+     y=y+(gridsize/2);
+   }
+  }
+  
+  boolean outside() {
+        return x + (direction*gridsize) < 0 || x + (direction*gridsize) > width - gridsize;
+    }
+}
